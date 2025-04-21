@@ -1,8 +1,9 @@
-﻿namespace ConsoleApp2
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace ConsoleApp2
 {
     internal class Program
     {
-        // TODO Add default case to handle invalid input.
         // Add price? (Just for fun or realism)
 
         static void Main(string[] args)
@@ -87,7 +88,21 @@
                 Console.Write("Would you like to choose another item? press enter key to continue: ");
                 again = Console.ReadLine();
                 Console.ResetColor();
-            } while (again == "");
+
+                if (again == "n")
+                {ExitProgram();break;}
+                else if (again == "")
+                {RepeatChoice();}
+                else
+                {
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("INVALID INPUT! PRESS ENTER TO PICK ANOTHER ITEM");
+                    Console.ResetColor();
+                }
+
+
+            } while (true);
         }
         static void ExitProgram()
         {
@@ -126,3 +141,7 @@
     //        }
     //        Console.WriteLine();
     //    }
+
+
+
+
