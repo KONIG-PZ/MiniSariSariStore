@@ -4,8 +4,8 @@ namespace ConsoleApp2
 {
     internal class Program
     {
-        // Add price? (Just for fun or realism)
-
+        // TODO Add price? (Just for fun or realism)
+        // TODO improve Cashier()
         static void Main(string[] args)
         {
             DisplayMenu();
@@ -40,21 +40,20 @@ namespace ConsoleApp2
             Header();
             Console.WriteLine("\n\n");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("+----+--------+");
-            Console.WriteLine("| ID | Item   |");
-            Console.WriteLine("+----+--------+");
-            Console.WriteLine("| 1  | Soda   |");
-            Console.WriteLine("| 2  | Chips1 |");
-            Console.WriteLine("| 3  | Chips2 |");
-            Console.WriteLine("| 4  | Candy1 |");
-            Console.WriteLine("| 5  | Candy2 |");
-            Console.WriteLine("+----+--------+");
+            Console.WriteLine("+----+--------++----------+");
+            Console.WriteLine("| ID | Item   || Price    |");
+            Console.WriteLine("+----+--------++----------+");
+            Console.WriteLine("| 1  | Soda   || 20.00php |");
+            Console.WriteLine("| 2  | Chips1 || 15.00php |");
+            Console.WriteLine("| 3  | Chips2 || 15.00php |");
+            Console.WriteLine("| 4  | Candy1 || 01.00php |");
+            Console.WriteLine("| 5  | Candy2 || 01.00php |");
+            Console.WriteLine("+----+--------++--------+");
             Console.ResetColor();
         }
         static void ChooseItemFromMenu()
         {
             // CHOOSE AN ITEM
-            
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("Enter Choice: ");
@@ -62,19 +61,31 @@ namespace ConsoleApp2
             string choice = Console.ReadLine();
             Console.ResetColor();
 
-            switch (choice)
+            if (int.TryParse(choice, out int num))
             {
-                case "1": Console.WriteLine("    1 - Soda"); break;
-                case "2": Console.WriteLine("    2 - Chips1"); break;
-                case "3": Console.WriteLine("    3 - Chips2"); break;
-                case "4": Console.WriteLine("    4 - Candy1"); break;
-                case "5": Console.WriteLine("    5 - Candy2"); break;
-                default:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("INVALIDE INPUT");
-                    Console.ResetColor();
-                    break;
+                switch (num)
+                {
+                    case 1: Console.WriteLine("    1 - Soda"); break;
+                    case 2: Console.WriteLine("    2 - Chips1"); break;
+                    case 3: Console.WriteLine("    3 - Chips2"); break;
+                    case 4: Console.WriteLine("    4 - Candy1"); break;
+                    case 5: Console.WriteLine("    5 - Candy2"); break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("INVALID INPUT: Choice out of range.");
+                        Console.ResetColor();
+                        break;
+                }
             }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("INVALID INPUT: Please enter a valid number.");
+                Console.ResetColor();
+            }
+        }
+        static void Cashier()
+        {
 
         }
         static void RepeatChoice()
@@ -98,6 +109,9 @@ namespace ConsoleApp2
                     Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("INVALID INPUT! PRESS ENTER TO PICK ANOTHER ITEM");
+                    Console.Clear();
+                    Console.WriteLine("");
+                    Main(new string[] { });
                     Console.ResetColor();
                 }
 
@@ -111,8 +125,12 @@ namespace ConsoleApp2
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("Thank you and come again!!");
             Console.WriteLine("Press any key to exit...");
-            Console.ReadLine();
+            Thread.Sleep(3000);
+            Console.Clear();
+            Console.WriteLine("");
+            Main(new string[] { });
         }
+
     }
 }
 
