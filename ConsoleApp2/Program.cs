@@ -86,7 +86,7 @@ namespace ConsoleApp2
         }
         static void Cashier()
         {
-
+            Console.WriteLine("");
         }
         static void RepeatChoice()
         {
