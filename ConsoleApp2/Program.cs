@@ -6,6 +6,13 @@ namespace ConsoleApp2
     {
         // TODO Add price? (Just for fun or realism)
         // TODO improve Cashier()
+        // TODO Add the Items to Json
+        static Items Soda;
+        static Items Chips1;
+        static Items Chips2;
+        static Items Candy1;
+        static Items Candy2;
+
         static void Main(string[] args)
         {
             DisplayMenu();
@@ -33,7 +40,6 @@ namespace ConsoleApp2
         }
         static void DisplayMenu()
         {
-            // TODO: IMPROVE AESTETICS 
             // DISPLAY MENU
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -45,15 +51,15 @@ namespace ConsoleApp2
             Console.WriteLine("+----+--------++----------+");
             Console.WriteLine("| 1  | Soda   || 20.00php |");
             Console.WriteLine("| 2  | Chips1 || 15.00php |");
-            Console.WriteLine("| 3  | Chips2 || 15.00php |");
-            Console.WriteLine("| 4  | Candy1 || 01.00php |");
+            Console.WriteLine("| 3  | Chips2 || 14.99php |");
+            Console.WriteLine("| 4  | Candy1 || 02.99php |");
             Console.WriteLine("| 5  | Candy2 || 01.00php |");
             Console.WriteLine("+----+--------++--------+");
             Console.ResetColor();
         }
-        static void ChooseItemFromMenu()
+        static void ChooseItemFromMenu(Items item)
         {
-            // CHOOSE AN ITEM
+
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("Enter Choice: ");
@@ -61,28 +67,41 @@ namespace ConsoleApp2
             string choice = Console.ReadLine();
             Console.ResetColor();
 
+
+
+
             if (int.TryParse(choice, out int num))
             {
-                switch (num)
+                 switch (num)
                 {
-                    case 1: Console.WriteLine("    1 - Soda"); break;
-                    case 2: Console.WriteLine("    2 - Chips1"); break;
-                    case 3: Console.WriteLine("    3 - Chips2"); break;
-                    case 4: Console.WriteLine("    4 - Candy1"); break;
-                    case 5: Console.WriteLine("    5 - Candy2"); break;
+                    case 1: Console.WriteLine("{0} | {1} | {2}PHP", Soda.ID, Soda.Item, Soda.Price); break;
+                    case 2: Console.WriteLine("{0} | {1} | {2}PHP", Chips1.ID, Chips1.Item, Chips1.Price); break;
+                    case 3: Console.WriteLine("{0} | {1} | {2}PHP", Chips2.ID, Chips2.Item, Chips2.Price); break;
+                    case 4: Console.WriteLine("{0} | {1} | {2}PHP", Candy1.ID, Candy1.Item, Candy1.Price); break;
+                    case 5: Console.WriteLine("{0} | {1} | {2}PHP", Candy2.ID, Candy2.Item, Candy2.Price); break;
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("INVALID INPUT: Choice out of range.");
                         Console.ResetColor();
                         break;
                 }
+
             }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("INVALID INPUT: Please enter a valid number.");
-                Console.ResetColor();
-            }
+
+        }
+        static void ItemList()
+        {
+            Soda = new Items { ID = 1, Item = "Soda", Price = 20.00m };
+            Chips1 = new Items { ID = 2, Item = "Chips1", Price = 15.00m };
+            Chips2 = new Items { ID = 3, Item = "Chips2", Price = 14.99m };
+            Candy1 = new Items { ID = 4, Item = "Candy1", Price = 2.99m };
+            Candy2 = new Items { ID = 5, Item = "Candy2", Price = 1.00m };
+        }
+        class Items()
+        { 
+            public int ID { get; set; }
+            public string Item { get; set; }
+            public decimal Price { get; set; }
         }
         static void Cashier()
         {
@@ -94,7 +113,7 @@ namespace ConsoleApp2
             string again;
             do
             {
-                ChooseItemFromMenu();
+                ChooseItemFromMenu(null);
                 Console.ForegroundColor = ConsoleColor.DarkGray;
                 Console.Write("Would you like to choose another item? press enter key to continue: ");
                 again = Console.ReadLine();
@@ -135,31 +154,63 @@ namespace ConsoleApp2
 }
 
 //SHADOW REALM
-    //{
-    //    int rows = 7;
-    //    int cols = 50;
-    //    string message = "MENU!";
-    //    int messageRow = rows / 2;
-    //    int messageStartCol = (cols - message.Length) / 2;
-    //
-    //    for (int i = 0; i < rows; i++)
-    //    {
-    //        for (int j = 0; j < cols; j++)
-    //        {
-    //            if (i == 0 || i == rows - 1 || j == 0 || j == cols - 1)
-    //            { Console.Write("*"); }
-    //            else if (i == messageRow && j >= messageStartCol && j < messageStartCol + message.Length)
-    //            {
-    //                Console.Write(message[j - messageStartCol]);
-    //            }
-    //            else
-    //            {
-    //                Console.Write(" ");
-    //            }
-    //        }
-    //        Console.WriteLine();
-    //    }
+/*{
+    int rows = 7;
+    int cols = 50;
+    string message = "MENU!";
+    int messageRow = rows / 2;
+    int messageStartCol = (cols - message.Length) / 2;
 
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            if (i == 0 || i == rows - 1 || j == 0 || j == cols - 1)
+            { Console.Write("*"); }
+            else if (i == messageRow && j >= messageStartCol && j < messageStartCol + message.Length)
+            {
+                Console.Write(message[j - messageStartCol]);
+            }
+            else
+            {
+                Console.Write(" ");
+            }
+        }
+        Console.WriteLine();
+    }
+*/
+/*static void ChooseItemFromMenuOld()
+    {
+        // CHOOSE AN ITEM
+        Console.WriteLine();
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.Write("Enter Choice: ");
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        string choice = Console.ReadLine();
+        Console.ResetColor();
 
+        if (int.TryParse(choice, out int num))
+        {
+            switch (num)
+            {
+                case 1: Console.WriteLine("    1 - Soda"); break;
+                case 2: Console.WriteLine("    2 - Chips1"); break;
+                case 3: Console.WriteLine("    3 - Chips2"); break;
+                case 4: Console.WriteLine("    4 - Candy1"); break;
+                case 5: Console.WriteLine("    5 - Candy2"); break;
+                default:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("INVALID INPUT: Choice out of range.");
+                    Console.ResetColor();
+                    break;
+            }
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("INVALID INPUT: Please enter a valid number.");
+            Console.ResetColor();
+        }
+    }*/
 
 
