@@ -69,7 +69,6 @@ namespace ConsoleApp2
 
 
 
-
             if (int.TryParse(choice, out int num))
             {
                  switch (num)
