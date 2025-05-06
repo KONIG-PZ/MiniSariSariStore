@@ -71,7 +71,7 @@ namespace ConsoleApp2
         }
 
         //SELECT ITEM
-        public static void Select()
+        static void Select()
         {
             Console.Write("INPUT HERE (1-5): ");
             string IDSelect = Console.ReadLine();
@@ -124,7 +124,8 @@ namespace ConsoleApp2
             do
             {
                 Console.ForegroundColor = ConsoleColor.DarkGray;
-                Console.Write("Would you like to choose another item? enter 'n' key to exit: ");
+                Console.WriteLine("Would you like to choose another item? enter 'y' key  continue");
+                Console.Write("Or enter 'n' key to exit: ");
                 again = Console.ReadLine();
                 Console.ResetColor();
 
@@ -135,10 +136,7 @@ namespace ConsoleApp2
                 else
                 {
                     Console.WriteLine();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("INVALID INPUT! PRESS ENTER TO PICK ANOTHER ITEM");
                     Console.Clear();
-                    Console.WriteLine("");
                     Main(new string[] { });
                     Console.ResetColor();
                 }
